@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Реєстрація — UniTutor</title>
+  <meta name="description" content="Створіть акаунт UniTutor, щоб знайти репетитора або почати викладати.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="images/logo.svg" alt="UniTutor — на головну" width="151" height="40">
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Головне меню">
+        <ul class="nav-list">
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="tutors.html">Репетитори</a></li>
+          <li><a href="become-tutor.html">Стати репетитором</a></li>
+          <li><a href="about.html">Про платформу</a></li>
+          <li><a href="contacts.html">Контакти</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="login.html">Вхід</a>
+          <a class="btn btn-primary" href="register.html" aria-current="page">Реєстрація</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="container auth-layout">
+      <section class="card auth-card" aria-labelledby="page-title">
+        <h1 id="page-title">Реєстрація</h1>
+        <p class="auth-lead">Один акаунт для навчання і викладання: ви зможете перемикатися між режимом учня та кабінетом репетитора будь-коли.</p>
+        <form class="auth-form" action="#" method="post">
+          <div class="field-row">
+            <div class="field">
+              <label for="register-first-name">Ім’я</label>
+              <input type="text" id="register-first-name" name="first_name" autocomplete="given-name" required>
+            </div>
+            <div class="field">
+              <label for="register-last-name">Прізвище</label>
+              <input type="text" id="register-last-name" name="last_name" autocomplete="family-name" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="register-email">Електронна пошта</label>
+            <input type="email" id="register-email" name="email" autocomplete="email" placeholder="name@example.com" aria-describedby="register-email-hint" required>
+            <p class="field-hint" id="register-email-hint">Плануєте викладати? Вкажіть корпоративну пошту університету, щоб статус студента підтвердився автоматично.</p>
+          </div>
+          <div class="field">
+            <label for="register-password">Пароль</label>
+            <input type="password" id="register-password" name="password" autocomplete="new-password" minlength="8" aria-describedby="register-password-hint" required>
+            <p class="field-hint" id="register-password-hint">Щонайменше 8 символів.</p>
+          </div>
+          <fieldset class="field-group">
+            <legend>З чого почнемо?</legend>
+            <div class="choice-grid">
+              <label class="choice-card">
+                <input type="radio" name="goal" value="learn" required>
+                <span><strong>Шукаю репетитора</strong> Після реєстрації відкриється каталог репетиторів.</span>
+              </label>
+              <label class="choice-card">
+                <input type="radio" name="goal" value="teach">
+                <span><strong>Хочу викладати</strong> Після реєстрації ви перейдете до створення анкети.</span>
+              </label>
+            </div>
+          </fieldset>
+          <label class="check"><input type="checkbox" name="privacy_consent" value="1" required> <span>Погоджуюся з <a href="privacy.html">Політикою конфіденційності</a></span></label>
+          <button class="btn btn-primary btn-block" type="submit">Створити акаунт</button>
+        </form>
+        <p class="auth-switch">Вже маєте акаунт? <a href="login.html">Увійти</a></p>
+      </section>
+
+      <aside class="auth-aside" aria-labelledby="register-reviews-title">
+        <h2 id="register-reviews-title">Що кажуть користувачі</h2>
+        <figure class="testimonial">
+          <blockquote>
+            <p>Дискретна математика мені не давалася, поки не почав займатися зі студентом магістратури. Він пояснив теми на прикладах, і модуль я закрив без перескладань.</p>
+          </blockquote>
+          <figcaption>
+            <img src="images/reviewers/taras.webp" alt="Аватар Тараса" width="48" height="48" decoding="async">
+            <span><span class="testimonial-name">Тарас</span> <span class="testimonial-role">студент 1 курсу, КПІ ім. Ігоря Сікорського</span></span>
+          </figcaption>
+        </figure>
+        <figure class="testimonial">
+          <blockquote>
+            <p>Обрала репетиторку з університету, куди хочу вступати. Окрім підготовки до НМТ з української, дізналася багато корисного про навчання на філологічному факультеті.</p>
+          </blockquote>
+          <figcaption>
+            <img src="images/reviewers/diana.webp" alt="Аватар Діани" width="48" height="48" decoding="async">
+            <span><span class="testimonial-name">Діана</span> <span class="testimonial-role">учениця 11 класу, Харків</span></span>
+          </figcaption>
+        </figure>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          <img src="images/logo-inverse.svg" alt="UniTutor — на головну" width="151" height="40" loading="lazy">
+        </a>
+        <p>Платформа для пошуку репетиторів серед студентів університетів. Навчаємося за принципом «рівний — рівному».</p>
+      </div>
+      <nav class="footer-nav" aria-label="Навігація у підвалі сайту">
+        <div>
+          <h2 class="footer-title">Платформа</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="tutors.html">Каталог репетиторів</a></li>
+            <li><a href="become-tutor.html">Стати репетитором</a></li>
+            <li><a href="about.html">Про платформу</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Користувачам</h2>
+          <ul class="footer-links">
+            <li><a href="login.html">Вхід</a></li>
+            <li><a href="register.html">Реєстрація</a></li>
+            <li><a href="contacts.html">Підтримка</a></li>
+            <li><a href="privacy.html">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div>
+        <h2 class="footer-title">Контакти</h2>
+        <address>
+          <a href="mailto:support@unitutor.com.ua">support@unitutor.com.ua</a><br>
+          Пн–Пт, 10:00–18:00<br>
+          Київ, Україна
+        </address>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 UniTutor. Навчальний проєкт студентів групи КІ-42, КПІ ім. Ігоря Сікорського.</p>
+    </div>
+  </footer>
+</body>
+</html>

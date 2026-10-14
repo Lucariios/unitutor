@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UniTutor — репетитори серед студентів університетів</title>
+  <meta name="description" content="UniTutor допомагає знайти репетитора серед студентів університетів: пошук за предметом і ЗВО, рейтинги, відгуки та заявки на заняття.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="images/logo.svg" alt="UniTutor — на головну" width="151" height="40">
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Головне меню">
+        <ul class="nav-list">
+          <li><a href="index.html" aria-current="page">Головна</a></li>
+          <li><a href="tutors.html">Репетитори</a></li>
+          <li><a href="become-tutor.html">Стати репетитором</a></li>
+          <li><a href="about.html">Про платформу</a></li>
+          <li><a href="contacts.html">Контакти</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="login.html">Вхід</a>
+          <a class="btn btn-primary" href="register.html">Реєстрація</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Навчання за принципом «рівний — рівному»</p>
+          <h1 id="hero-title">Знайдіть репетитора серед студентів <span class="text-accent">університетів</span></h1>
+          <p class="hero-lead">Студенти пояснюють предмети, які самі нещодавно успішно склали. Шукайте за дисципліною та університетом, порівнюйте ціни й відгуки та домовляйтеся про заняття напряму.</p>
+          <form class="search-form" action="tutors.html" method="get" role="search" aria-label="Пошук репетитора">
+            <div class="field">
+              <label for="search-subject">Предмет</label>
+              <input type="search" id="search-subject" name="subject" list="subject-options" placeholder="Наприклад, фізика" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="search-university">Університет</label>
+              <select id="search-university" name="university">
+                <option value="">Будь-який</option>
+                <option value="kpi">КПІ ім. Ігоря Сікорського</option>
+                <option value="knu">КНУ ім. Тараса Шевченка</option>
+                <option value="ukma">НаУКМА</option>
+                <option value="lpnu">НУ «Львівська політехніка»</option>
+                <option value="lnu">ЛНУ ім. Івана Франка</option>
+                <option value="karazin">ХНУ ім. В. Н. Каразіна</option>
+                <option value="kneu">КНЕУ ім. Вадима Гетьмана</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Знайти</button>
+          </form>
+          <datalist id="subject-options">
+            <option>Вища математика</option>
+            <option>Теорія ймовірностей</option>
+            <option>Дискретна математика</option>
+            <option>Програмування</option>
+            <option>Python</option>
+            <option>C++</option>
+            <option>JavaScript</option>
+            <option>Алгоритми та структури даних</option>
+            <option>Бази даних</option>
+            <option>Фізика</option>
+            <option>Хімія</option>
+            <option>Англійська мова</option>
+            <option>Українська мова</option>
+            <option>Українська література</option>
+            <option>Мікроекономіка</option>
+            <option>Макроекономіка</option>
+            <option>Статистика</option>
+          </datalist>
+        </div>
+        <div class="hero-media">
+          <img src="images/hero-560.webp" srcset="images/hero-560.webp 560w, images/hero-1120.webp 1120w" sizes="(min-width: 600px) 560px, calc(100vw - 32px)" width="560" height="520" alt="Приклад картки репетитора: верифікована студентка КПІ Олена Коваленко з рейтингом 4,9 і вільним часом у понеділок о 18:30" fetchpriority="high">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="subjects-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="subjects-title">Популярні предмети</h2>
+            <p>Від підготовки до НМТ до університетських дисциплін: оберіть напрям і перегляньте репетиторів.</p>
+          </div>
+          <a class="btn btn-secondary" href="tutors.html">Усі репетитори</a>
+        </div>
+        <ul class="subject-grid">
+          <li>
+            <a class="subject-card" href="tutors.html?subject=higher-math">
+              <span class="icon-tile"><img src="images/icons/math.svg" alt="" width="28" height="28"></span>
+              <h3>Вища математика</h3>
+              <p>Границі, похідні, інтеграли, підготовка до модулів</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=programming">
+              <span class="icon-tile"><img src="images/icons/code.svg" alt="" width="28" height="28"></span>
+              <h3>Програмування</h3>
+              <p>Python, C++, JavaScript, алгоритми та ООП</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=physics">
+              <span class="icon-tile"><img src="images/icons/physics.svg" alt="" width="28" height="28"></span>
+              <h3>Фізика</h3>
+              <p>Механіка, електрика, задачі для школи та ЗВО</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=english">
+              <span class="icon-tile"><img src="images/icons/language.svg" alt="" width="28" height="28"></span>
+              <h3>Англійська мова</h3>
+              <p>Розмовна практика, граматика, НМТ</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=ukrainian">
+              <span class="icon-tile"><img src="images/icons/book.svg" alt="" width="28" height="28"></span>
+              <h3>Українська мова та література</h3>
+              <p>Правопис, аналіз творів, тести</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=chemistry">
+              <span class="icon-tile"><img src="images/icons/chemistry.svg" alt="" width="28" height="28"></span>
+              <h3>Хімія</h3>
+              <p>Задачі, органічна хімія, підготовка до НМТ</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=economics">
+              <span class="icon-tile"><img src="images/icons/economics.svg" alt="" width="28" height="28"></span>
+              <h3>Економіка</h3>
+              <p>Мікро- та макроекономіка, статистика</p>
+            </a>
+          </li>
+          <li>
+            <a class="subject-card" href="tutors.html?subject=nmt">
+              <span class="icon-tile"><img src="images/icons/exam.svg" alt="" width="28" height="28"></span>
+              <h3>Підготовка до НМТ</h3>
+              <p>Математика, українська, англійська, фізика, хімія</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-labelledby="benefits-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="benefits-title">Чому обирають UniTutor</h2>
+            <p>Платформа створена саме для студентського середовища і враховує те, чого бракує загальним сервісам пошуку репетиторів.</p>
+          </div>
+        </div>
+        <ul class="benefit-grid">
+          <li class="benefit-card">
+            <span class="benefit-number" aria-hidden="true">01</span>
+            <h3>Перевірені студенти</h3>
+            <p>Позначка «Верифікований студент» з’являється в анкеті після підтвердження статусу через корпоративну пошту університету.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-number" aria-hidden="true">02</span>
+            <h3>Пошук за університетом</h3>
+            <p>Фільтруйте репетиторів за ЗВО та спеціальністю й обирайте тих, хто навчається за тією самою програмою.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-number" aria-hidden="true">03</span>
+            <h3>Університетські дисципліни</h3>
+            <p>Окрім шкільних предметів і НМТ, тут є вища математика, програмування, економіка та інші дисципліни ЗВО.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-number" aria-hidden="true">04</span>
+            <h3>Доступна вартість</h3>
+            <p>Студенти самі встановлюють ставку, тому заняття зазвичай доступніші, ніж у професійних репетиторів.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-number" aria-hidden="true">05</span>
+            <h3>Учень і репетитор в одному акаунті</h3>
+            <p>Отримуйте допомогу з одних предметів і викладайте інші, перемикаючись між режимами без нової реєстрації.</p>
+          </li>
+          <li class="benefit-card">
+            <span class="benefit-number" aria-hidden="true">06</span>
+            <h3>Проста анкета</h3>
+            <p>Щоб почати викладати, достатньо вказати предмети, ставку, формат і зручний час. Це займає кілька хвилин.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="top-tutors-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="top-tutors-title">Репетитори з найвищим рейтингом</h2>
+            <p>Верифіковані студенти, яких учні оцінюють найкраще. Гортайте список, щоб побачити більше.</p>
+          </div>
+          <a class="btn btn-secondary" href="tutors.html">Відкрити каталог</a>
+        </div>
+        <ul class="tutor-carousel">
+          <li>
+            <article class="tutor-card tutor-card--stretched">
+              <div class="tutor-card-head">
+                <img class="avatar" src="images/tutors/mariia-shevchuk.webp" alt="Аватар Марії Шевчук" width="64" height="64" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Марія Шевчук</a></h3>
+                  <p class="tutor-uni">НаУКМА, 1 курс магістратури</p>
+                </div>
+              </div>
+              <p class="badge badge-verified">Верифікований студент</p>
+              <ul class="tag-list">
+                <li>Англійська мова</li>
+                <li>НМТ з англійської</li>
+              </ul>
+              <dl class="tutor-meta">
+                <div><dt>Рейтинг</dt><dd><span class="rating">5,0</span> <span class="muted">(18)</span></dd></div>
+                <div><dt>Вартість</dt><dd>300 грн / 60 хв</dd></div>
+              </dl>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--stretched">
+              <div class="tutor-card-head">
+                <img class="avatar" src="images/tutors/olena-kovalenko.webp" alt="Аватар Олени Коваленко" width="64" height="64" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Олена Коваленко</a></h3>
+                  <p class="tutor-uni">КПІ ім. Ігоря Сікорського, 3 курс</p>
+                </div>
+              </div>
+              <p class="badge badge-verified">Верифікований студент</p>
+              <ul class="tag-list">
+                <li>Вища математика</li>
+                <li>Теорія ймовірностей</li>
+                <li>Python</li>
+              </ul>
+              <dl class="tutor-meta">
+                <div><dt>Рейтинг</dt><dd><span class="rating">4,9</span> <span class="muted">(37)</span></dd></div>
+                <div><dt>Вартість</dt><dd>400 грн / 60 хв</dd></div>
+              </dl>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--stretched">
+              <div class="tutor-card-head">
+                <img class="avatar" src="images/tutors/nazar-oliinyk.webp" alt="Аватар Назара Олійника" width="64" height="64" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Назар Олійник</a></h3>
+                  <p class="tutor-uni">КПІ ім. Ігоря Сікорського, 1 курс магістратури</p>
+                </div>
+              </div>
+              <p class="badge badge-verified">Верифікований студент</p>
+              <ul class="tag-list">
+                <li>JavaScript</li>
+                <li>ООП</li>
+                <li>Дискретна математика</li>
+              </ul>
+              <dl class="tutor-meta">
+                <div><dt>Рейтинг</dt><dd><span class="rating">4,9</span> <span class="muted">(41)</span></dd></div>
+                <div><dt>Вартість</dt><dd>500 грн / 60 хв</dd></div>
+              </dl>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--stretched">
+              <div class="tutor-card-head">
+                <img class="avatar" src="images/tutors/iryna-lytvynenko.webp" alt="Аватар Ірини Литвиненко" width="64" height="64" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Ірина Литвиненко</a></h3>
+                  <p class="tutor-uni">ХНУ ім. В. Н. Каразіна, 2 курс</p>
+                </div>
+              </div>
+              <p class="badge badge-verified">Верифікований студент</p>
+              <ul class="tag-list">
+                <li>Українська мова</li>
+                <li>Українська література</li>
+                <li>НМТ</li>
+              </ul>
+              <dl class="tutor-meta">
+                <div><dt>Рейтинг</dt><dd><span class="rating">4,9</span> <span class="muted">(22)</span></dd></div>
+                <div><dt>Вартість</dt><dd>250 грн / 60 хв</dd></div>
+              </dl>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--stretched">
+              <div class="tutor-card-head">
+                <img class="avatar" src="images/tutors/andrii-melnyk.webp" alt="Аватар Андрія Мельника" width="64" height="64" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Андрій Мельник</a></h3>
+                  <p class="tutor-uni">КНУ ім. Тараса Шевченка, 4 курс</p>
+                </div>
+              </div>
+              <p class="badge badge-verified">Верифікований студент</p>
+              <ul class="tag-list">
+                <li>Фізика</li>
+                <li>НМТ з фізики</li>
+                <li>Вища математика</li>
+              </ul>
+              <dl class="tutor-meta">
+                <div><dt>Рейтинг</dt><dd><span class="rating">4,8</span> <span class="muted">(24)</span></dd></div>
+                <div><dt>Вартість</dt><dd>350 грн / 60 хв</dd></div>
+              </dl>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--stretched">
+              <div class="tutor-card-head">
+                <img class="avatar" src="images/tutors/sofiia-tkachenko.webp" alt="Аватар Софії Ткаченко" width="64" height="64" loading="lazy" decoding="async">
+                <div>
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Софія Ткаченко</a></h3>
+                  <p class="tutor-uni">КНЕУ ім. Вадима Гетьмана, 4 курс</p>
+                </div>
+              </div>
+              <p class="badge badge-verified">Верифікований студент</p>
+              <ul class="tag-list">
+                <li>Мікроекономіка</li>
+                <li>Макроекономіка</li>
+                <li>Статистика</li>
+              </ul>
+              <dl class="tutor-meta">
+                <div><dt>Рейтинг</dt><dd><span class="rating">4,8</span> <span class="muted">(15)</span></dd></div>
+                <div><dt>Вартість</dt><dd>280 грн / 60 хв</dd></div>
+              </dl>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2 id="testimonials-title">Відгуки учнів</h2>
+            <p>Що кажуть ті, хто вже знайшов репетитора на UniTutor.</p>
+          </div>
+        </div>
+        <ul class="testimonial-grid">
+          <li>
+            <figure class="testimonial">
+              <blockquote>
+                <p>Перед модулем з вищої математики знайшла репетиторку з КПІ. Вона пояснювала інтеграли на задачах, дуже схожих на наші контрольні, і тема нарешті стала зрозумілою.</p>
+              </blockquote>
+              <figcaption>
+                <img src="images/reviewers/kateryna.webp" alt="Аватар Катерини" width="48" height="48" loading="lazy" decoding="async">
+                <span><span class="testimonial-name">Катерина</span> <span class="testimonial-role">студентка 1 курсу, КНУ ім. Тараса Шевченка</span></span>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="testimonial">
+              <blockquote>
+                <p>Готувався до НМТ з фізики зі студентом КНУ. Окрім задач, він розповів, як насправді виглядає навчання на фізичному факультеті, тож тепер я точно знаю, куди вступати.</p>
+              </blockquote>
+              <figcaption>
+                <img src="images/reviewers/bohdan.webp" alt="Аватар Богдана" width="48" height="48" loading="lazy" decoding="async">
+                <span><span class="testimonial-name">Богдан</span> <span class="testimonial-role">учень 11 класу, Київ</span></span>
+              </figcaption>
+            </figure>
+          </li>
+          <li>
+            <figure class="testimonial">
+              <blockquote>
+                <p>Шукала розмовну англійську за доступну ціну. Заняття зі студенткою-філологинею коштують значно менше, ніж у мовній школі, а прогрес я відчула вже за місяць.</p>
+              </blockquote>
+              <figcaption>
+                <img src="images/reviewers/anastasiia.webp" alt="Аватар Анастасії" width="48" height="48" loading="lazy" decoding="async">
+                <span><span class="testimonial-name">Анастасія</span> <span class="testimonial-role">студентка 2 курсу, НаУКМА</span></span>
+              </figcaption>
+            </figure>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="become-title">
+      <div class="container">
+        <div class="cta-panel">
+          <div class="cta-intro">
+            <h2 id="become-title">Як стати репетитором</h2>
+            <p>Добре знаєте предмет? Діліться знаннями, самостійно встановлюйте ставку й розклад та отримуйте перший досвід викладання ще під час навчання.</p>
+          </div>
+          <ol class="steps">
+            <li>
+              <h3>Зареєструйтеся</h3>
+              <p>Створіть акаунт і оберіть мету «Хочу викладати».</p>
+            </li>
+            <li>
+              <h3>Підтвердьте статус</h3>
+              <p>Вкажіть корпоративну пошту свого університету.</p>
+            </li>
+            <li>
+              <h3>Заповніть анкету</h3>
+              <p>Предмети, ставка, формат і зручний час.</p>
+            </li>
+            <li>
+              <h3>Отримуйте заявки</h3>
+              <p>Приймайте запити учнів і проводьте заняття.</p>
+            </li>
+          </ol>
+          <div class="cta-actions">
+            <a class="btn btn-light" href="register.html">Створити анкету</a>
+            <a class="btn btn-outline-light" href="become-tutor.html">Розрахувати заробіток</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--white" aria-labelledby="faq-title">
+      <div class="container faq-layout">
+        <div>
+          <h2 id="faq-title">Часті запитання</h2>
+          <p>Про верифікацію репетиторів і безпеку розрахунків. Не знайшли відповіді? <a href="contacts.html">Напишіть у підтримку</a>.</p>
+        </div>
+        <div class="faq-list">
+          <details class="faq-item" open>
+            <summary>Як UniTutor перевіряє, що репетитор справді студент?</summary>
+            <div class="faq-answer">
+              <p>Репетитор підтверджує статус через корпоративну пошту університету (наприклад, адресу в домені .edu.ua). Після перевірки в анкеті з’являється позначка «Верифікований студент», а в каталозі можна увімкнути фільтр «Лише верифіковані студенти».</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Як оплачувати заняття?</summary>
+            <div class="faq-answer">
+              <p>Оплата відбувається напряму між учнем і репетитором: переказом на картку або готівкою на очному занятті. Платформа допомагає знайти репетитора й домовитися про час, але не проводить платежі.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Як убезпечити себе під час оплати?</summary>
+            <div class="faq-answer">
+              <p>Обирайте верифікованих репетиторів і звертайте увагу на рейтинг та відгуки. Узгоджуйте вартість і спосіб оплати до заняття, а в разі проблем повідомте службу підтримки через форму звернення.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Чи можна одночасно навчатися і викладати?</summary>
+            <div class="faq-answer">
+              <p>Так. Один акаунт підходить для обох ролей: шукайте репетиторів з одних предметів і створіть анкету, щоб викладати інші.</p>
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary>Як залишити відгук про заняття?</summary>
+            <div class="faq-answer">
+              <p>Після заняття репетитор або учень позначає його як завершене, і учневі відкривається форма оцінювання. Оцінка та відгук оновлюють публічний рейтинг репетитора.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          <img src="images/logo-inverse.svg" alt="UniTutor — на головну" width="151" height="40" loading="lazy">
+        </a>
+        <p>Платформа для пошуку репетиторів серед студентів університетів. Навчаємося за принципом «рівний — рівному».</p>
+      </div>
+      <nav class="footer-nav" aria-label="Навігація у підвалі сайту">
+        <div>
+          <h2 class="footer-title">Платформа</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="tutors.html">Каталог репетиторів</a></li>
+            <li><a href="become-tutor.html">Стати репетитором</a></li>
+            <li><a href="about.html">Про платформу</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Користувачам</h2>
+          <ul class="footer-links">
+            <li><a href="login.html">Вхід</a></li>
+            <li><a href="register.html">Реєстрація</a></li>
+            <li><a href="contacts.html">Підтримка</a></li>
+            <li><a href="privacy.html">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div>
+        <h2 class="footer-title">Контакти</h2>
+        <address>
+          <a href="mailto:support@unitutor.com.ua">support@unitutor.com.ua</a><br>
+          Пн–Пт, 10:00–18:00<br>
+          Київ, Україна
+        </address>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 UniTutor. Навчальний проєкт студентів групи КІ-42, КПІ ім. Ігоря Сікорського.</p>
+    </div>
+  </footer>
+</body>
+</html>

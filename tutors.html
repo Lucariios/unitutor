@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог репетиторів — UniTutor</title>
+  <meta name="description" content="Каталог студентів-репетиторів UniTutor з фільтрами за предметом, університетом, ціною, рейтингом і форматом занять.">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до основного вмісту</a>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="images/logo.svg" alt="UniTutor — на головну" width="151" height="40">
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Головне меню">
+        <ul class="nav-list">
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="tutors.html" aria-current="page">Репетитори</a></li>
+          <li><a href="become-tutor.html">Стати репетитором</a></li>
+          <li><a href="about.html">Про платформу</a></li>
+          <li><a href="contacts.html">Контакти</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a class="btn btn-ghost" href="login.html">Вхід</a>
+          <a class="btn btn-primary" href="register.html">Реєстрація</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-intro" aria-labelledby="page-title">
+      <div class="container page-intro-grid">
+        <h1 id="page-title">Каталог репетиторів</h1>
+        <p>Студенти українських університетів, які допомагають з НМТ, шкільними предметами та дисциплінами ЗВО. Налаштуйте фільтри, порівняйте анкети й відкрийте профіль, щоб надіслати заявку.</p>
+      </div>
+    </section>
+
+    <div class="container catalog-layout">
+      <aside class="filters" aria-labelledby="filters-title">
+        <h2 id="filters-title">Фільтри</h2>
+        <form class="filters-form" action="tutors.html" method="get">
+          <div class="field">
+            <label for="filter-subject">Предмет</label>
+            <input type="search" id="filter-subject" name="subject" list="subject-options" placeholder="Назва предмета" autocomplete="off">
+            <datalist id="subject-options">
+              <option>Вища математика</option>
+              <option>Теорія ймовірностей</option>
+              <option>Дискретна математика</option>
+              <option>Програмування</option>
+              <option>Python</option>
+              <option>C++</option>
+              <option>JavaScript</option>
+              <option>Алгоритми та структури даних</option>
+              <option>Бази даних</option>
+              <option>Фізика</option>
+              <option>Хімія</option>
+              <option>Англійська мова</option>
+              <option>Українська мова</option>
+              <option>Українська література</option>
+              <option>Мікроекономіка</option>
+              <option>Макроекономіка</option>
+              <option>Статистика</option>
+            </datalist>
+          </div>
+          <div class="field">
+            <label for="filter-university">Університет</label>
+            <select id="filter-university" name="university">
+              <option value="">Будь-який</option>
+              <option value="kpi">КПІ ім. Ігоря Сікорського</option>
+              <option value="knu">КНУ ім. Тараса Шевченка</option>
+              <option value="ukma">НаУКМА</option>
+              <option value="lpnu">НУ «Львівська політехніка»</option>
+              <option value="lnu">ЛНУ ім. Івана Франка</option>
+              <option value="karazin">ХНУ ім. В. Н. Каразіна</option>
+              <option value="kneu">КНЕУ ім. Вадима Гетьмана</option>
+            </select>
+          </div>
+          <fieldset class="field-group">
+            <legend>Ціна за 60 хв, грн</legend>
+            <div class="price-range">
+              <div class="field">
+                <label for="filter-price-min">Від</label>
+                <input type="number" id="filter-price-min" name="price_min" min="0" step="50" placeholder="200">
+              </div>
+              <div class="field">
+                <label for="filter-price-max">До</label>
+                <input type="number" id="filter-price-max" name="price_max" min="0" step="50" placeholder="600">
+              </div>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="filter-rating">Рейтинг</label>
+            <select id="filter-rating" name="rating">
+              <option value="">Будь-який</option>
+              <option value="4.5">4,5 і вище</option>
+              <option value="4">4,0 і вище</option>
+            </select>
+          </div>
+          <fieldset class="field-group">
+            <legend>Формат занять</legend>
+            <label class="check"><input type="checkbox" name="format" value="online"> Онлайн</label>
+            <label class="check"><input type="checkbox" name="format" value="offline"> Офлайн</label>
+          </fieldset>
+          <label class="check check--highlight"><input type="checkbox" name="verified" value="1"> Лише верифіковані студенти</label>
+          <div class="filter-actions">
+            <button class="btn btn-primary" type="submit">Застосувати</button>
+            <button class="btn btn-ghost" type="reset">Скинути</button>
+          </div>
+        </form>
+      </aside>
+
+      <section class="catalog-results" aria-labelledby="results-title">
+        <h2 id="results-title" class="results-title">Знайдено 8 репетиторів</h2>
+        <ul class="tutor-list">
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/olena-kovalenko.webp" alt="Аватар Олени Коваленко" width="96" height="96" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Олена Коваленко</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">КПІ ім. Ігоря Сікорського · Прикладна математика, 3 курс</p>
+                <p class="tutor-bio">Допомагаю першокурсникам з вищою математикою та теорією ймовірностей: від границь і похідних до підготовки до модульних контрольних.</p>
+                <ul class="tag-list">
+                  <li>Вища математика</li>
+                  <li>Теорія ймовірностей</li>
+                  <li>Python</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">400 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,9</span> <span class="muted">37 відгуків</span></p>
+                <p class="muted">Онлайн, офлайн (Київ)</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Олена Коваленко</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/mariia-shevchuk.webp" alt="Аватар Марії Шевчук" width="96" height="96" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Марія Шевчук</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">НаУКМА · Англійська філологія, 1 курс магістратури</p>
+                <p class="tutor-bio">Розмовна англійська, граматика та підготовка до НМТ. Працюю з учнями рівнів від A2 до C1.</p>
+                <ul class="tag-list">
+                  <li>Англійська мова</li>
+                  <li>НМТ з англійської</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">300 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">5,0</span> <span class="muted">18 відгуків</span></p>
+                <p class="muted">Онлайн</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Марія Шевчук</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/nazar-oliinyk.webp" alt="Аватар Назара Олійника" width="96" height="96" loading="lazy" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Назар Олійник</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">КПІ ім. Ігоря Сікорського · Інженерія програмного забезпечення, 1 курс магістратури</p>
+                <p class="tutor-bio">Пояснюю основи програмування, ООП і веб-розробку на практичних задачах. Разом розбираємо помилки у вашому коді.</p>
+                <ul class="tag-list">
+                  <li>JavaScript</li>
+                  <li>ООП</li>
+                  <li>Дискретна математика</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">500 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,9</span> <span class="muted">41 відгук</span></p>
+                <p class="muted">Онлайн</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Назар Олійник</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/iryna-lytvynenko.webp" alt="Аватар Ірини Литвиненко" width="96" height="96" loading="lazy" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Ірина Литвиненко</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">ХНУ ім. В. Н. Каразіна · Українська філологія, 2 курс</p>
+                <p class="tutor-bio">Готую до НМТ з української мови та літератури: правопис, аналіз творів, тести минулих років.</p>
+                <ul class="tag-list">
+                  <li>Українська мова</li>
+                  <li>Українська література</li>
+                  <li>НМТ</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">250 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,9</span> <span class="muted">22 відгуки</span></p>
+                <p class="muted">Онлайн</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Ірина Литвиненко</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/andrii-melnyk.webp" alt="Аватар Андрія Мельника" width="96" height="96" loading="lazy" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Андрій Мельник</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">КНУ ім. Тараса Шевченка · Фізика, 4 курс</p>
+                <p class="tutor-bio">Фізика для школярів і студентів: механіка, електрика, підготовка до НМТ. Розповім, як вступити на фізичний факультет і що там чекає.</p>
+                <ul class="tag-list">
+                  <li>Фізика</li>
+                  <li>НМТ з фізики</li>
+                  <li>Вища математика</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">350 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,8</span> <span class="muted">24 відгуки</span></p>
+                <p class="muted">Онлайн, офлайн (Київ)</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Андрій Мельник</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/sofiia-tkachenko.webp" alt="Аватар Софії Ткаченко" width="96" height="96" loading="lazy" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Софія Ткаченко</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">КНЕУ ім. Вадима Гетьмана · Економіка, 4 курс</p>
+                <p class="tutor-bio">Мікро- та макроекономіка, статистика й підготовка до іспитів з економічних дисциплін.</p>
+                <ul class="tag-list">
+                  <li>Мікроекономіка</li>
+                  <li>Макроекономіка</li>
+                  <li>Статистика</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">280 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,8</span> <span class="muted">15 відгуків</span></p>
+                <p class="muted">Онлайн, офлайн (Київ)</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Софія Ткаченко</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/dmytro-bondarenko.webp" alt="Аватар Дмитра Бондаренка" width="96" height="96" loading="lazy" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Дмитро Бондаренко</a></h3>
+                  <p class="badge badge-verified">Верифікований студент</p>
+                </div>
+                <p class="tutor-uni">НУ «Львівська політехніка» · Комп’ютерні науки, 3 курс</p>
+                <p class="tutor-bio">Алгоритми, структури даних, C++ і SQL. Допоможу підготуватися до олімпіад і технічних співбесід.</p>
+                <ul class="tag-list">
+                  <li>C++</li>
+                  <li>Алгоритми</li>
+                  <li>Бази даних</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">450 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,7</span> <span class="muted">31 відгук</span></p>
+                <p class="muted">Онлайн, офлайн (Львів)</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Дмитро Бондаренко</span></a>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article class="tutor-card tutor-card--row">
+              <img class="avatar avatar--lg" src="images/tutors/maksym-kravchuk.webp" alt="Аватар Максима Кравчука" width="96" height="96" loading="lazy" decoding="async">
+              <div class="tutor-card-body">
+                <div class="tutor-card-title">
+                  <h3 class="tutor-name"><a href="tutor-profile.html">Максим Кравчук</a></h3>
+                  <p class="badge badge-pending">Статус перевіряється</p>
+                </div>
+                <p class="tutor-uni">ЛНУ ім. Івана Франка · Хімія, 3 курс</p>
+                <p class="tutor-bio">Хімія для школярів і першокурсників: від розв’язування задач до підготовки до НМТ.</p>
+                <ul class="tag-list">
+                  <li>Хімія</li>
+                  <li>НМТ з хімії</li>
+                  <li>Органічна хімія</li>
+                </ul>
+              </div>
+              <div class="tutor-card-side">
+                <p class="price"><span class="price-value">300 грн</span> <span class="price-unit">/ 60 хв</span></p>
+                <p><span class="rating">4,6</span> <span class="muted">12 відгуків</span></p>
+                <p class="muted">Онлайн</p>
+                <a class="btn btn-secondary" href="tutor-profile.html">Переглянути профіль<span class="visually-hidden">: Максим Кравчук</span></a>
+              </div>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a class="logo" href="index.html">
+          <img src="images/logo-inverse.svg" alt="UniTutor — на головну" width="151" height="40" loading="lazy">
+        </a>
+        <p>Платформа для пошуку репетиторів серед студентів університетів. Навчаємося за принципом «рівний — рівному».</p>
+      </div>
+      <nav class="footer-nav" aria-label="Навігація у підвалі сайту">
+        <div>
+          <h2 class="footer-title">Платформа</h2>
+          <ul class="footer-links">
+            <li><a href="index.html">Головна</a></li>
+            <li><a href="tutors.html">Каталог репетиторів</a></li>
+            <li><a href="become-tutor.html">Стати репетитором</a></li>
+            <li><a href="about.html">Про платформу</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="footer-title">Користувачам</h2>
+          <ul class="footer-links">
+            <li><a href="login.html">Вхід</a></li>
+            <li><a href="register.html">Реєстрація</a></li>
+            <li><a href="contacts.html">Підтримка</a></li>
+            <li><a href="privacy.html">Політика конфіденційності</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div>
+        <h2 class="footer-title">Контакти</h2>
+        <address>
+          <a href="mailto:support@unitutor.com.ua">support@unitutor.com.ua</a><br>
+          Пн–Пт, 10:00–18:00<br>
+          Київ, Україна
+        </address>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>© 2026 UniTutor. Навчальний проєкт студентів групи КІ-42, КПІ ім. Ігоря Сікорського.</p>
+    </div>
+  </footer>
+</body>
+</html>
