@@ -1,1 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48"><rect width="48" height="48" rx="11" fill="#4F46E5"/><g transform="translate(4.8 4.3) scale(.8)"><path d="M24 5 44 13 24 21 4 13z" fill="#FFFFFF"/><path d="M13 18.2 24 22.6l11-4.4v4c0 2-5 3.4-11 3.4s-11-1.4-11-3.4z" fill="#FFFFFF"/><path d="M15 26.5v6.5a9 9 0 0 0 18 0v-6.5" fill="none" stroke="#FFFFFF" stroke-width="4.5" stroke-linecap="round"/><path d="M20.2 30c0 2.4 1.7 4.2 3.8 4.2s3.8-1.8 3.8-4.2" fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/><path d="M40 14.2v7" fill="none" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round"/><path d="M40 22.6v2.6" fill="none" stroke="#22C55E" stroke-width="3.8" stroke-linecap="round"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 88 88" width="88" height="88">
+  <!-- Контейнер іконки -->
+  <rect x="0" y="0" width="88" height="88" rx="22" fill="#4F46E5"/>
+  
+  <!-- Знак: білий монохром + зелена китиця -->
+  <g transform="translate(8, 10)">
+    <path d="M 8,14 L 36,3 L 64,14 L 36,25 Z" fill="#FFFFFF"/>
+    <path d="M 22,20.5 V 26.5 C 22,31 50,31 50,26.5 V 20.5" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 59,16 Q 64,22 63,33" fill="none" stroke="#22C55E" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="63" cy="34" r="2.2" fill="#22C55E"/>
+
+    <path d="M 18,30 V 46 C 18,56 26,62 36,62 C 46,62 54,56 54,46 V 30" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>
