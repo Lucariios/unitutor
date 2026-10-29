@@ -179,7 +179,9 @@
   font-weight: 500;
 }
 
+/* тло виходить за межі колонки на ширину відступу, а прапорець стоїть на одній лінії з іншими */
 .check--highlight {
+  margin-inline: -0.75rem;
   margin-bottom: 1.25rem;
   padding: 0.75rem;
   border-radius: var(--radius-sm);
