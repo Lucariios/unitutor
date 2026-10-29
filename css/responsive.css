@@ -54,6 +54,16 @@
   }
 }
 
+@media (min-width: 1024px) {
+  .filters,
+  .profile-aside {
+    position: sticky;
+    top: auto;
+    bottom: 1.5rem;
+    align-self: end;
+  }
+}
+
 @media (max-width: 1023px) {
   .hero-grid,
   .catalog-layout,

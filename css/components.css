@@ -102,9 +102,17 @@
   color: var(--color-primary);
 }
 
+.nav-actions .btn-ghost {
+  border-color: var(--color-border);
+}
+
 .btn-ghost {
   background: transparent;
   color: var(--color-text);
+}
+
+.nav-actions .btn-ghost:hover {
+  border-color: var(--color-primary-light);
 }
 
 .btn-ghost:hover {
