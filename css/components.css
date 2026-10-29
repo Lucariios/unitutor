@@ -1,0 +1,683 @@
+/* ==========================================================================
+   components.css — повторювані блоки: кнопки, поля форм і повідомлення
+   про помилки, мітки, картки, відгуки, питання й відповіді, кроки, CTA.
+   ========================================================================== */
+
+/* ---------- Мітки, картки, списки ---------- */
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 999px;
+  background: var(--color-primary-100);
+  color: var(--color-primary-dark);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.card {
+  padding: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.check-list,
+.dot-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.check-list li {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.check-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.2em;
+  left: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url("../images/icons/check-badge.svg") center / contain no-repeat;
+}
+
+.dot-list li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.dot-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.6em;
+  left: 0.25rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+}
+
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font: 600 1rem/1.2 var(--font-body);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-dark);
+  color: #fff;
+}
+
+.btn-secondary {
+  border-color: var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-primary-light);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.btn-ghost:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+}
+
+.btn-light {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+.btn-light:hover {
+  background: var(--color-primary-50);
+  color: var(--color-primary-dark);
+}
+
+.btn-outline-light {
+  border-color: rgb(255 255 255 / 0.6);
+  color: #fff;
+}
+
+.btn-outline-light:hover {
+  border-color: #fff;
+  background: rgb(255 255 255 / 0.12);
+  color: #fff;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- Поля форм ---------- */
+.field {
+  display: grid;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+.field label,
+.field-group legend {
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+/* Обов'язкове поле (атрибут required) позначається зірочкою після підпису */
+.field:has(:required) > label::after,
+.field-group:has(:required) > legend::after {
+  content: " *";
+  color: var(--color-error-text);
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 1rem;
+}
+
+.field-group {
+  margin: 0 0 1rem;
+  padding: 0;
+  border: 0;
+}
+
+.field-group legend {
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.field-hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-block: 0.375rem;
+  cursor: pointer;
+}
+
+.form-note {
+  margin: 0.875rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- Валідація: HTML5-обмеження + :user-invalid ----------
+   Браузер перевіряє атрибути required, type, minlength, min/max/step, а
+   псевдоклас :user-invalid спрацьовує лише після взаємодії з полем або
+   спроби надіслати форму, тому порожня форма не «червоніє» одразу.
+   Місце під повідомлення зарезервоване (visibility замість display): поява
+   помилки після виходу з поля не зсуває кнопку надсилання з-під курсора. */
+.field-error {
+  display: flex;
+  visibility: hidden;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--color-error-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.field-error::before {
+  content: "!";
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 50%;
+  background: var(--color-error);
+  color: #fff;
+  font: 700 0.75rem/1 var(--font-body);
+}
+
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border-color: var(--color-error);
+  background-color: var(--color-error-bg);
+}
+
+input:user-invalid:focus-visible,
+select:user-invalid:focus-visible,
+textarea:user-invalid:focus-visible {
+  border-color: var(--color-error);
+  outline-color: rgb(239 68 68 / 0.25);
+}
+
+/* Поле з обмеженнями, заповнене правильно, підсвічується зеленим */
+:is(input, select, textarea):is([required], [minlength], [min], [max]):user-valid {
+  border-color: var(--color-accent);
+}
+
+input[type="checkbox"]:user-invalid,
+input[type="radio"]:user-invalid {
+  outline: 2px solid var(--color-error);
+  outline-offset: 2px;
+}
+
+.field:has(> .field-error),
+.field-group:has(> .field-error) {
+  margin-bottom: 0.5rem;
+}
+
+.check + .field-error {
+  margin-bottom: 1rem;
+}
+
+.field :is(input, select, textarea):user-invalid ~ .field-error,
+.field-group:has(:user-invalid) > .field-error,
+.check:has(:user-invalid) + .field-error {
+  visibility: visible;
+}
+
+/* ---------- Мітки статусу, теги, рейтинг, ціна, аватари ---------- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.badge::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  background: center / contain no-repeat;
+}
+
+.badge-verified {
+  background: var(--color-accent-100);
+  color: var(--color-accent-text);
+}
+
+.badge-verified::before {
+  background-image: url("../images/icons/check-badge.svg");
+}
+
+.badge-pending {
+  background: #F1F5F9;
+  color: var(--color-text-muted);
+}
+
+.badge-pending::before {
+  background-image: url("../images/icons/pending.svg");
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 0.25rem 0.625rem;
+  border-radius: 999px;
+  background: var(--color-primary-50);
+  color: var(--color-primary-dark);
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-family: var(--font-accent);
+  font-weight: 600;
+}
+
+.rating::before {
+  content: "★";
+  content: "★" / "";
+  color: var(--color-star);
+}
+
+.stars {
+  color: var(--color-star);
+  letter-spacing: 0.1em;
+}
+
+.price {
+  margin: 0;
+}
+
+.price-value {
+  font-family: var(--font-accent);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.price-unit {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.avatar {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar--lg {
+  width: 96px;
+  height: 96px;
+}
+
+.avatar--xl {
+  width: 160px;
+  height: 160px;
+}
+
+.icon-tile {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius);
+  background: var(--color-primary-50);
+}
+
+/* ---------- Картка репетитора ---------- */
+.tutor-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+  padding: 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tutor-card:hover {
+  border-color: var(--color-primary-light);
+  box-shadow: var(--shadow);
+}
+
+.tutor-card-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.tutor-name {
+  margin: 0 0 0.125rem;
+  font-size: 1.125rem;
+}
+
+.tutor-name a {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.tutor-name a:hover {
+  color: var(--color-primary);
+}
+
+/* Уся картка в каруселі клікабельна через посилання з імені */
+.tutor-card--stretched .tutor-name a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+}
+
+.tutor-card--stretched:focus-within {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.tutor-card--stretched .tutor-name a:focus-visible {
+  outline: none;
+}
+
+.tutor-card .badge {
+  align-self: flex-start;
+}
+
+.tutor-uni {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.tutor-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: auto 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.tutor-meta dt {
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tutor-meta dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------- Відгуки (цитати) ---------- */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  height: 100%;
+  margin: 0;
+  padding: 1.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.testimonial blockquote {
+  margin: 0;
+}
+
+.testimonial blockquote p {
+  margin: 0;
+}
+
+.testimonial blockquote::before {
+  content: "“";
+  display: block;
+  height: 2rem;
+  color: var(--color-primary-light);
+  font: 700 3.5rem/1 var(--font-accent);
+}
+
+.testimonial figcaption {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.testimonial figcaption img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.testimonial-name {
+  display: block;
+  font-weight: 600;
+}
+
+.testimonial-role {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- Питання й відповіді ---------- */
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 2rem 4rem;
+  align-items: start;
+}
+
+.faq-layout > div:first-child p {
+  color: var(--color-text-muted);
+}
+
+.faq-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.faq-item {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+}
+
+.faq-item summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.125rem 1.5rem;
+  border-radius: var(--radius);
+  font-weight: 600;
+  list-style: none;
+  cursor: pointer;
+}
+
+/* Safari малює власний трикутник у summary — ховаємо його */
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  content: "+";
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-50);
+  color: var(--color-primary);
+  font: 600 1.25rem/1 var(--font-accent);
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-answer {
+  padding: 0 1.5rem 1.25rem;
+  color: var(--color-text-muted);
+}
+
+.faq-answer p {
+  margin: 0;
+}
+
+/* ---------- Кроки (нумерований список) ---------- */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 0.1);
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  display: block;
+  margin-bottom: 0.75rem;
+  font: 700 1.5rem/1 var(--font-accent);
+}
+
+.steps h3 {
+  margin-bottom: 0.375rem;
+}
+
+.steps p {
+  margin: 0;
+}
+
+.steps--light {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.steps--light li {
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+.steps--light li::before {
+  color: var(--color-primary);
+}
+
+.steps--light p {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Панель із закликом до дії ---------- */
+.cta-panel {
+  display: grid;
+  gap: 2rem;
+  padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+  border-radius: var(--radius-lg);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.cta-panel h2 {
+  margin-bottom: 0.5rem;
+}
+
+.cta-panel p {
+  margin: 0;
+  color: var(--color-primary-100);
+}
+
+.cta-intro {
+  max-width: 680px;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.cta-panel--compact {
+  grid-template-columns: 1fr auto;
+  align-items: center;
+}

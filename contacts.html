@@ -7,6 +7,9 @@
   <meta name="description" content="Зв’яжіться з підтримкою UniTutor: верифікація статусу студента, скарги, технічні питання та співпраця.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;family=Poppins:wght@600;700&amp;display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -18,6 +21,11 @@
       <a class="logo" href="index.html">
         <img src="images/logo.svg" alt="UniTutor — на головну" width="151" height="40">
       </a>
+      <input class="nav-toggle" type="checkbox" id="nav-toggle">
+      <label class="nav-burger" for="nav-toggle">
+        <span class="nav-burger-icon" aria-hidden="true"></span>
+        Меню
+      </label>
       <nav class="site-nav" id="site-nav" aria-label="Головне меню">
         <ul class="nav-list">
           <li><a href="index.html">Головна</a></li>
@@ -85,11 +93,13 @@
           <div class="field-row">
             <div class="field">
               <label for="contact-name">Ім’я</label>
-              <input type="text" id="contact-name" name="name" autocomplete="name" required>
+              <input type="text" id="contact-name" name="name" autocomplete="name" minlength="2" maxlength="60" required>
+              <p class="field-error">Вкажіть ім’я (від 2 символів).</p>
             </div>
             <div class="field">
               <label for="contact-email">Електронна пошта</label>
               <input type="email" id="contact-email" name="email" autocomplete="email" placeholder="name@example.com" required>
+              <p class="field-error">Введіть адресу як name@example.com.</p>
             </div>
           </div>
           <div class="field">
@@ -101,10 +111,12 @@
               <option value="technical">Технічне питання</option>
               <option value="partnership">Співпраця зі студентськими радами</option>
             </select>
+            <p class="field-error">Оберіть тему звернення.</p>
           </div>
           <div class="field">
             <label for="contact-message">Повідомлення</label>
-            <textarea id="contact-message" name="message" rows="6" minlength="10" placeholder="Опишіть ваше питання" required></textarea>
+            <textarea id="contact-message" name="message" rows="6" minlength="10" maxlength="1000" placeholder="Опишіть ваше питання" required></textarea>
+            <p class="field-error">Опишіть питання (від 10 символів).</p>
           </div>
           <button class="btn btn-primary" type="submit">Надіслати звернення</button>
         </form>

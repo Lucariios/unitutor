@@ -7,6 +7,9 @@
   <meta name="description" content="Увійдіть до UniTutor, щоб керувати заявками, розкладом і анкетою репетитора.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;family=Poppins:wght@600;700&amp;display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -18,6 +21,11 @@
       <a class="logo" href="index.html">
         <img src="images/logo.svg" alt="UniTutor — на головну" width="151" height="40">
       </a>
+      <input class="nav-toggle" type="checkbox" id="nav-toggle">
+      <label class="nav-burger" for="nav-toggle">
+        <span class="nav-burger-icon" aria-hidden="true"></span>
+        Меню
+      </label>
       <nav class="site-nav" id="site-nav" aria-label="Головне меню">
         <ul class="nav-list">
           <li><a href="index.html">Головна</a></li>
@@ -43,10 +51,12 @@
           <div class="field">
             <label for="login-email">Електронна пошта</label>
             <input type="email" id="login-email" name="email" autocomplete="email" placeholder="name@example.com" required>
+            <p class="field-error">Введіть адресу як name@example.com.</p>
           </div>
           <div class="field">
             <label for="login-password">Пароль</label>
             <input type="password" id="login-password" name="password" autocomplete="current-password" required>
+            <p class="field-error">Введіть пароль.</p>
           </div>
           <label class="check"><input type="checkbox" name="remember" value="1"> Запам’ятати мене</label>
           <button class="btn btn-primary btn-block" type="submit">Увійти</button>
@@ -58,6 +68,7 @@
             <div class="field">
               <label for="reset-email">Електронна пошта</label>
               <input type="email" id="reset-email" name="email" autocomplete="email" required>
+              <p class="field-error">Введіть адресу як name@example.com.</p>
             </div>
             <button class="btn btn-secondary btn-block" type="submit">Надіслати посилання</button>
           </form>

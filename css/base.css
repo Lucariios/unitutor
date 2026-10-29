@@ -1,0 +1,254 @@
+/* ==========================================================================
+   base.css — змінні брендбуку, скидання стилів, типографіка, таблиці
+   і базовий вигляд елементів форм. Лише селектори елементів і допоміжні класи.
+   ========================================================================== */
+
+/* ---------- Змінні брендбуку (ЛР1) ---------- */
+:root {
+  --color-primary: #4F46E5;        /* Indigo: логотип, головні кнопки, активні елементи */
+  --color-primary-light: #6366F1;  /* Light Indigo: hover-ефекти, декоративні елементи */
+  --color-primary-dark: #4338CA;   /* hover головних кнопок, щоб білий текст мав контраст ≥ 4.5:1 */
+  --color-primary-50: #EEF2FF;
+  --color-primary-100: #E0E7FF;
+  --color-accent: #22C55E;         /* Green: успішні дії, статус «доступний» */
+  --color-accent-100: #DCFCE7;
+  --color-accent-text: #15803D;    /* зелений для тексту на світлому фоні */
+  --color-error: #EF4444;          /* Red: помилки форм (рамки полів) */
+  --color-error-text: #DC2626;     /* червоний для тексту помилок: контраст ≥ 4.5:1 на білому */
+  --color-error-bg: #FEF2F2;
+  --color-text: #0F172A;           /* Dark Slate: заголовки та основний текст */
+  --color-text-muted: #64748B;     /* Slate: підписи та другорядна інформація */
+  --color-bg: #F8FAFC;             /* Light Gray: основний фон сторінок */
+  --color-surface: #FFFFFF;
+  --color-border: #E2E8F0;
+  --color-star: #F59E0B;
+
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-heading: "Manrope", "Inter", system-ui, sans-serif;
+  --font-accent: "Poppins", "Inter", system-ui, sans-serif;
+
+  --radius-sm: 8px;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 0.05);
+  --shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px rgb(15 23 42 / 0.07);
+  --container: 1200px;
+  --header-height: 72px;
+}
+
+/* ---------- Скидання ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Типографіка: заголовки, абзаци, посилання, списки ---------- */
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.25rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1.3vw, 2.25rem);
+  font-weight: 800;
+}
+
+h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--color-primary);
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+ul,
+ol {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+
+li::marker {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* ---------- Таблиці ---------- */
+table {
+  width: 100%;
+  margin: 0 0 1.5em;
+  border-collapse: collapse;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  font-size: 0.9375rem;
+}
+
+caption {
+  margin-bottom: 0.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+thead th {
+  background: var(--color-primary-50);
+  color: var(--color-primary-dark);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--color-bg);
+}
+
+/* ---------- Елементи форм ---------- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.6875rem 0.875rem;
+  border: 1px solid var(--color-text-muted);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+
+/* Safari ігнорує розміри й рамку системного списку, тому стрілку select малюємо самі */
+select {
+  -webkit-appearance: none;
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%2364748B' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-position: right 0.875rem center;
+  background-repeat: no-repeat;
+  background-size: 1rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  border-color: var(--color-primary);
+  outline: 3px solid var(--color-primary-100);
+  outline-offset: 0;
+  border-radius: var(--radius-sm);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 1.125rem;
+  height: 1.125rem;
+  margin: 0;
+  flex-shrink: 0;
+  accent-color: var(--color-primary);
+}
+
+fieldset {
+  min-width: 0;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Допоміжні класи ---------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  z-index: 100;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 16px;
+  color: #fff;
+}
+
+.text-accent {
+  color: var(--color-primary);
+}
+
+.muted {
+  color: var(--color-text-muted);
+}

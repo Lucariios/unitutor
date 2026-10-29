@@ -7,6 +7,9 @@
   <meta name="description" content="Створіть акаунт UniTutor, щоб знайти репетитора або почати викладати.">
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;family=Poppins:wght@600;700&amp;display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -18,6 +21,11 @@
       <a class="logo" href="index.html">
         <img src="images/logo.svg" alt="UniTutor — на головну" width="151" height="40">
       </a>
+      <input class="nav-toggle" type="checkbox" id="nav-toggle">
+      <label class="nav-burger" for="nav-toggle">
+        <span class="nav-burger-icon" aria-hidden="true"></span>
+        Меню
+      </label>
       <nav class="site-nav" id="site-nav" aria-label="Головне меню">
         <ul class="nav-list">
           <li><a href="index.html">Головна</a></li>
@@ -43,22 +51,26 @@
           <div class="field-row">
             <div class="field">
               <label for="register-first-name">Ім’я</label>
-              <input type="text" id="register-first-name" name="first_name" autocomplete="given-name" required>
+              <input type="text" id="register-first-name" name="first_name" autocomplete="given-name" minlength="2" maxlength="40" required>
+              <p class="field-error">Вкажіть ім’я.</p>
             </div>
             <div class="field">
               <label for="register-last-name">Прізвище</label>
-              <input type="text" id="register-last-name" name="last_name" autocomplete="family-name" required>
+              <input type="text" id="register-last-name" name="last_name" autocomplete="family-name" minlength="2" maxlength="40" required>
+              <p class="field-error">Вкажіть прізвище.</p>
             </div>
           </div>
           <div class="field">
             <label for="register-email">Електронна пошта</label>
             <input type="email" id="register-email" name="email" autocomplete="email" placeholder="name@example.com" aria-describedby="register-email-hint" required>
             <p class="field-hint" id="register-email-hint">Плануєте викладати? Вкажіть корпоративну пошту університету, щоб статус студента підтвердився автоматично.</p>
+            <p class="field-error">Введіть адресу як name@example.com.</p>
           </div>
           <div class="field">
             <label for="register-password">Пароль</label>
-            <input type="password" id="register-password" name="password" autocomplete="new-password" minlength="8" aria-describedby="register-password-hint" required>
+            <input type="password" id="register-password" name="password" autocomplete="new-password" minlength="8" maxlength="64" aria-describedby="register-password-hint" required>
             <p class="field-hint" id="register-password-hint">Щонайменше 8 символів.</p>
+            <p class="field-error">Пароль має бути від 8 символів.</p>
           </div>
           <fieldset class="field-group">
             <legend>З чого почнемо?</legend>
@@ -72,8 +84,10 @@
                 <span><strong>Хочу викладати</strong> Після реєстрації ви перейдете до створення анкети.</span>
               </label>
             </div>
+            <p class="field-error">Оберіть, з чого почати.</p>
           </fieldset>
           <label class="check"><input type="checkbox" name="privacy_consent" value="1" required> <span>Погоджуюся з <a href="privacy.html">Політикою конфіденційності</a></span></label>
+          <p class="field-error">Без згоди реєстрація неможлива.</p>
           <button class="btn btn-primary btn-block" type="submit">Створити акаунт</button>
         </form>
         <p class="auth-switch">Вже маєте акаунт? <a href="login.html">Увійти</a></p>
