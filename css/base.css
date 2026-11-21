@@ -22,6 +22,7 @@
   --color-surface: #FFFFFF;
   --color-border: #E2E8F0;
   --color-star: #F59E0B;
+  --color-footer: #0F172A;         /* тло підвалу; у темній темі — темніше за сторінку */
 
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   --font-heading: "Manrope", "Inter", system-ui, sans-serif;
@@ -46,7 +47,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  background: var(--color-text);
+  background: var(--color-footer);
 }
 
 body {

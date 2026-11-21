@@ -1,0 +1,75 @@
+/* ==========================================================================
+   theme.css — темна тема (ЛР4). Клас dark-theme на <html> перемикає кнопка
+   «Змінити тему» зі скрипту main.js, а вибір зберігається в localStorage.
+   Кольори брендбуку перевизначено змінними: текст і рамки світлішають, тло
+   темніє. Заливки Indigo з білим текстом (кнопки, банери, результат
+   калькулятора) лишаються брендовими #4F46E5: контраст білого тексту 6,3 : 1.
+   Підключається останнім, щоб перекривати решту файлів.
+   ========================================================================== */
+
+.dark-theme {
+  color-scheme: dark;                          /* темні системні елементи: смуги прокручування, календар */
+  --color-primary: #A5B4FC;                    /* Indigo для тексту: ≥ 5,3 : 1 навіть на підсвічених тлах */
+  --color-primary-light: #818CF8;
+  --color-primary-dark: #C7D2FE;               /* наведення на текст — світліше, а не темніше */
+  --color-primary-50: rgb(99 102 241 / 0.18);
+  --color-primary-100: rgb(99 102 241 / 0.3);
+  --color-accent-100: rgb(34 197 94 / 0.16);
+  --color-accent-text: #4ADE80;
+  --color-error: #F87171;
+  --color-error-text: #FCA5A5;
+  --color-error-bg: rgb(239 68 68 / 0.14);
+  --color-text: #E2E8F0;
+  --color-text-muted: #94A3B8;
+  --color-bg: #0F172A;
+  --color-surface: #1E293B;
+  --color-border: #334155;
+  --color-star: #FBBF24;
+  --color-footer: #020617;
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.25), 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+/* Напівпрозора шапка над темною сторінкою */
+.dark-theme .site-header {
+  background: rgb(15 23 42 / 0.92);
+}
+
+/* Брендові заливки Indigo з білим текстом */
+.dark-theme :is(.skip-link, .btn-primary, .cta-panel, .calc-result),
+.dark-theme .nav-actions .btn-primary[aria-current="page"] {
+  background: #4F46E5;
+}
+
+.dark-theme .btn-primary:hover {
+  background: #4338CA;
+}
+
+.dark-theme .slot input:checked + span {
+  border-color: #4F46E5;
+  background: #4F46E5;
+}
+
+.dark-theme :is(.cta-panel p, .calc-result) {
+  color: #E0E7FF;
+}
+
+/* Біла кнопка на синьому банері зберігає темний Indigo тексту */
+.dark-theme .btn-light {
+  color: #4F46E5;
+}
+
+.dark-theme .btn-light:hover {
+  background: #EEF2FF;
+  color: #4338CA;
+}
+
+/* Стрілка випадного списку світлішого кольору */
+.dark-theme select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 6l4 4 4-4' fill='none' stroke='%2394A3B8' stroke-width='1.75' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.dark-theme .badge-pending {
+  background: rgb(148 163 184 / 0.18);
+  color: #CBD5E1;
+}

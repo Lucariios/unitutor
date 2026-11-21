@@ -108,8 +108,12 @@
   gap: 1.5rem;
 }
 
+/* Пункти не розриваються всередині й переносяться цілими: шапка лишається
+   охайною, коли текст збільшено стрілками (ЛР4) */
 .nav-list {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.25rem;
   margin: 0 auto;
   padding: 0;
@@ -123,9 +127,11 @@
   color: var(--color-text);
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
 }
 
-.nav-list a:hover {
+/* Підсвітку під час наведення вмикає скрипт main.js класом is-hovered (ЛР4) */
+.nav-list a.is-hovered {
   background: var(--color-primary-50);
   color: var(--color-primary);
 }
@@ -179,6 +185,36 @@
 .nav-toggle:focus-visible + .nav-burger {
   outline: 3px solid var(--color-primary);
   outline-offset: 2px;
+}
+
+/* Кнопка «Змінити тему»: її додає в шапку скрипт main.js (ЛР4) */
+.theme-toggle {
+  display: inline-grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-primary-light);
+  color: var(--color-primary);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .nav-burger-icon,
@@ -249,7 +285,7 @@
 .site-footer {
   flex-shrink: 0;
   padding-top: 4rem;
-  background: var(--color-text);
+  background: var(--color-footer);
   color: #CBD5E1;
 }
 
@@ -302,6 +338,10 @@
 }
 
 .footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 2rem;
   margin-top: 3rem;
   padding-block: 1.5rem;
   border-top: 1px solid #1E293B;
@@ -311,4 +351,19 @@
 
 .footer-bottom p {
   margin: 0;
+}
+
+/* Посилання «Нагору» в кінці <main>: його додає скрипт main.js (ЛР4) */
+.to-top {
+  margin-block: 0 2.5rem;
+  text-align: right;
+}
+
+.to-top a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.to-top a:hover {
+  text-decoration: underline;
 }

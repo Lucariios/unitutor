@@ -147,6 +147,37 @@
   width: 100%;
 }
 
+/* Кнопка-посилання «Показати більше» / «Згорнути»: її додає скрипт main.js (ЛР4) */
+.btn-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  border: 0;
+  background: none;
+  color: var(--color-primary);
+  font: 600 1rem/1.4 var(--font-body);
+  cursor: pointer;
+}
+
+.btn-more::after {
+  content: "";
+  width: 0.45rem;
+  height: 0.45rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.btn-more[aria-expanded="true"]::after {
+  transform: translateY(2px) rotate(225deg);
+}
+
+.btn-more:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
 /* ---------- Поля форм ---------- */
 .field {
   display: grid;
@@ -209,7 +240,10 @@
    псевдоклас :user-invalid спрацьовує лише після взаємодії з полем або
    спроби надіслати форму, тому порожня форма не «червоніє» одразу.
    Місце під повідомлення зарезервоване (visibility замість display): поява
-   помилки після виходу з поля не зсуває кнопку надсилання з-під курсора. */
+   помилки після виходу з поля не зсуває кнопку надсилання з-під курсора.
+   Форму звернення перевіряє скрипт main.js (ЛР4): він додає їй атрибут
+   novalidate і сам вмикає класи is-invalid та is-visible, тому правила
+   :user-invalid діють лише у формах без novalidate. */
 .field-error {
   display: flex;
   visibility: hidden;
@@ -235,27 +269,24 @@
   font: 700 0.75rem/1 var(--font-body);
 }
 
-input:user-invalid,
-select:user-invalid,
-textarea:user-invalid {
+form:not([novalidate]) :is(input, select, textarea):user-invalid,
+.field :is(input, select, textarea).is-invalid {
   border-color: var(--color-error);
   background-color: var(--color-error-bg);
 }
 
-input:user-invalid:focus-visible,
-select:user-invalid:focus-visible,
-textarea:user-invalid:focus-visible {
+form:not([novalidate]) :is(input, select, textarea):user-invalid:focus-visible,
+.field :is(input, select, textarea).is-invalid:focus-visible {
   border-color: var(--color-error);
   outline-color: rgb(239 68 68 / 0.25);
 }
 
 /* Поле з обмеженнями, заповнене правильно, підсвічується зеленим */
-:is(input, select, textarea):is([required], [minlength], [min], [max]):user-valid {
+form:not([novalidate]) :is(input, select, textarea):is([required], [minlength], [min], [max]):user-valid {
   border-color: var(--color-accent);
 }
 
-input[type="checkbox"]:user-invalid,
-input[type="radio"]:user-invalid {
+form:not([novalidate]) input:is([type="checkbox"], [type="radio"]):user-invalid {
   outline: 2px solid var(--color-error);
   outline-offset: 2px;
 }
@@ -269,10 +300,36 @@ input[type="radio"]:user-invalid {
   margin-bottom: 1rem;
 }
 
-.field :is(input, select, textarea):user-invalid ~ .field-error,
-.field-group:has(:user-invalid) > .field-error,
-.check:has(:user-invalid) + .field-error {
+form:not([novalidate]) .field :is(input, select, textarea):user-invalid ~ .field-error,
+form:not([novalidate]) .field-group:has(:user-invalid) > .field-error,
+form:not([novalidate]) .check:has(:user-invalid) + .field-error,
+.field-error.is-visible {
   visibility: visible;
+}
+
+/* Повідомлення про успішне надсилання форми звернення: текст вставляє скрипт */
+.form-status {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin: 1rem 0 0;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-100);
+  color: var(--color-accent-text);
+  font-weight: 600;
+}
+
+.form-status::before {
+  content: "";
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  background: url("../images/icons/check-badge.svg") center / contain no-repeat;
+}
+
+.form-status:empty {
+  display: none;
 }
 
 /* ---------- Мітки статусу, теги, рейтинг, ціна, аватари ---------- */
