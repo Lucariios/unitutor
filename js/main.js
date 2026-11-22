@@ -300,6 +300,7 @@
     if (!form || !list) {
       return;
     }
+    form.noValidate = true;                  // ціну перевіряє скрипт (validatePrices), а не браузер
 
     const cards = [...list.querySelectorAll('.tutor-card')];
     const resultTitle = document.getElementById('results-title');
@@ -428,6 +429,11 @@
       event.preventDefault();
       applyFilters();
     });
+
+    // після помилки ціна перевіряється знову під час введення: повідомлення зникає, щойно сума правильна
+    [priceMin, priceMax].forEach((input) => input.addEventListener('input', () => {
+      if (input.classList.contains('is-invalid')) validatePrices();
+    }));
 
     form.addEventListener('reset', () => {
       requestAnimationFrame(() => {
