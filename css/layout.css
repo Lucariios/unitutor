@@ -355,7 +355,9 @@
 
 /* Посилання «Нагору» в кінці <main>: його додає скрипт main.js (ЛР4) */
 .to-top {
-  margin-block: 0 2.5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.75rem max(16px, calc((100% - var(--container)) / 2)) 2.5rem;
   text-align: right;
 }
 

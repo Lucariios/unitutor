@@ -58,9 +58,35 @@
     link.href = '#top';                       // #top браузер прокручує на початок сторінки
     link.textContent = 'Нагору ↑';
     const paragraph = document.createElement('p');
-    paragraph.className = 'container to-top';
+    paragraph.className = 'to-top';
     paragraph.append(link);
     main.append(paragraph);
+    syncBackToTopBackground();
+  }
+
+  function syncBackToTopBackground() {
+    const main = document.querySelector('main');
+    const paragraph = main?.querySelector(':scope > .to-top');
+    if (!main || !paragraph) {
+      return;
+    }
+
+    const contentElements = [...main.children].filter((element) => !element.classList.contains('to-top'));
+    const lastContent = contentElements.at(-1);
+    const source = lastContent ? getComputedStyle(lastContent) : getComputedStyle(document.body);
+    const backgroundIsTransparent = source.backgroundColor === 'rgba(0, 0, 0, 0)'
+      || source.backgroundColor === 'transparent';
+    const fallback = getComputedStyle(document.body);
+
+    paragraph.style.backgroundColor = backgroundIsTransparent
+      ? fallback.backgroundColor
+      : source.backgroundColor;
+    paragraph.style.backgroundImage = source.backgroundImage === 'none'
+      ? 'none'
+      : source.backgroundImage;
+    paragraph.style.backgroundPosition = source.backgroundPosition;
+    paragraph.style.backgroundRepeat = source.backgroundRepeat;
+    paragraph.style.backgroundSize = source.backgroundSize;
   }
 
   // ---------- 2.2. Динамічна зміна контенту ----------
@@ -141,6 +167,7 @@
       const isDark = root.classList.toggle('dark-theme');
       saveTheme(isDark ? 'dark' : 'light');
       render();
+      syncBackToTopBackground();
     });
 
     header.append(button);
@@ -266,6 +293,155 @@
     });
   }
 
+  // ---------- Каталог репетиторів: фільтри та параметри пошуку з головної сторінки ----------
+  function initCatalogFilters() {
+    const form = document.querySelector('.filters-form');
+    const list = document.querySelector('.tutor-list');
+    if (!form || !list) {
+      return;
+    }
+
+    const cards = [...list.querySelectorAll('.tutor-card')];
+    const resultTitle = document.getElementById('results-title');
+    const emptyState = document.querySelector('.catalog-empty');
+    const subject = form.elements.subject;
+    const university = form.elements.university;
+    const priceMin = form.elements.price_min;
+    const priceMax = form.elements.price_max;
+    const rating = form.elements.rating;
+    const priceError = form.querySelector('fieldset.field-group .field-error');
+
+    const subjectAliases = {
+      'higher-math': 'Вища математика',
+      programming: 'Програмування',
+      physics: 'Фізика',
+      english: 'Англійська мова',
+      ukrainian: 'Українська мова',
+      chemistry: 'Хімія',
+      economics: 'Економіка',
+      nmt: 'НМТ',
+    };
+
+    const normalize = (value) => String(value)
+      .toLowerCase()
+      .replace(/[^a-zа-яіїєґ0-9]+/giu, ' ')
+      .trim();
+
+    const getTutorCountLabel = (count) => {
+      const mod10 = count % 10;
+      const mod100 = count % 100;
+      if (count === 1) return 'Знайдено 1 репетитора';
+      if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `Знайдено ${count} репетитори`;
+      return `Знайдено ${count} репетиторів`;
+    };
+
+    const validatePrices = () => {
+      const invalid = [priceMin, priceMax].some((input) => {
+        if (!input.value) return false;
+        return Number(input.value) < 0 || Number(input.value) % 50 !== 0;
+      });
+      [priceMin, priceMax].forEach((input) => {
+        input.classList.toggle('is-invalid', invalid);
+        input.setAttribute('aria-invalid', String(invalid));
+      });
+      priceError?.classList.toggle('is-visible', invalid);
+      return !invalid;
+    };
+
+    const applyFilters = ({ updateUrl = true } = {}) => {
+      if (!validatePrices()) return;
+
+      const subjectValue = subject.value.trim();
+      const subjectSearch = normalize(subjectAliases[subjectValue] || subjectValue);
+      const universityValue = university.value;
+      const minPrice = priceMin.value ? Number(priceMin.value) : null;
+      const maxPrice = priceMax.value ? Number(priceMax.value) : null;
+      const ratingValue = rating.value ? Number(rating.value) : null;
+      const selectedFormats = [...form.querySelectorAll('input[name="format"]:checked')]
+        .map((input) => input.value);
+      const verifiedOnly = form.elements.verified.checked;
+
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const tutorSubjects = normalize(card.dataset.subjects);
+        const tutorUniversity = card.dataset.university;
+        const tutorPrice = Number(card.dataset.price);
+        const tutorRating = Number(card.dataset.rating);
+        const tutorFormats = (card.dataset.formats || '').split(' ');
+        const tutorVerified = card.dataset.verified === 'true';
+
+        const matchesSubject = !subjectSearch
+          || tutorSubjects.includes(subjectSearch)
+          || normalize(card.textContent).includes(subjectSearch);
+        const matchesUniversity = !universityValue || tutorUniversity === universityValue;
+        const matchesMin = minPrice === null || tutorPrice >= minPrice;
+        const matchesMax = maxPrice === null || tutorPrice <= maxPrice;
+        const matchesRating = ratingValue === null || tutorRating >= ratingValue;
+        const matchesFormats = selectedFormats.every((format) => tutorFormats.includes(format));
+        const matchesVerified = !verifiedOnly || tutorVerified;
+
+        const visible = matchesSubject
+          && matchesUniversity
+          && matchesMin
+          && matchesMax
+          && matchesRating
+          && matchesFormats
+          && matchesVerified;
+
+        card.closest('li').hidden = !visible;
+        if (visible) visibleCount += 1;
+      });
+
+      if (resultTitle) resultTitle.textContent = getTutorCountLabel(visibleCount);
+      emptyState?.classList.toggle('is-visible', visibleCount === 0);
+
+      if (updateUrl) {
+        const params = new URLSearchParams();
+        if (subjectValue) params.set('subject', subjectValue);
+        if (universityValue) params.set('university', universityValue);
+        if (priceMin.value) params.set('price_min', priceMin.value);
+        if (priceMax.value) params.set('price_max', priceMax.value);
+        if (rating.value) params.set('rating', rating.value);
+        selectedFormats.forEach((format) => params.append('format', format));
+        if (verifiedOnly) params.set('verified', '1');
+        const query = params.toString();
+        history.replaceState(null, '', query ? `tutors.html?${query}` : 'tutors.html');
+      }
+    };
+
+    const params = new URLSearchParams(location.search);
+    const subjectParam = params.get('subject');
+    if (subjectParam) {
+      subject.value = subjectAliases[subjectParam] || subjectParam;
+    }
+    if (params.has('university')) university.value = params.get('university') || '';
+    if (params.has('price_min')) priceMin.value = params.get('price_min') || '';
+    if (params.has('price_max')) priceMax.value = params.get('price_max') || '';
+    if (params.has('rating')) rating.value = params.get('rating') || '';
+    params.getAll('format').forEach((format) => {
+      const input = form.querySelector(`input[name="format"][value="${format}"]`);
+      if (input) input.checked = true;
+    });
+    form.elements.verified.checked = params.get('verified') === '1';
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      applyFilters();
+    });
+
+    form.addEventListener('reset', () => {
+      requestAnimationFrame(() => {
+        [priceMin, priceMax].forEach((input) => input.classList.remove('is-invalid'));
+        priceError?.classList.remove('is-visible');
+        applyFilters();
+      });
+    });
+
+    document.querySelector('.catalog-reset')?.addEventListener('click', () => form.reset());
+
+    applyFilters({ updateUrl: false });
+  }
+
   // ---------- Калькулятор заробітку («Стати репетитором»): ставка × години на тиждень ----------
   const WEEKS_IN_MONTH = 4;
 
@@ -299,6 +475,7 @@
     initNavHover();
     initFontSizeKeys();
     initContactForm();
+    initCatalogFilters();
     initEarningsCalculator();
   });
 })();
