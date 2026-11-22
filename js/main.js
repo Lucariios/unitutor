@@ -336,17 +336,16 @@
       return `Знайдено ${count} репетиторів`;
     };
 
+    // червоним підсвічується лише поле з неправильною сумою, повідомлення під полями спільне
     const validatePrices = () => {
-      const invalid = [priceMin, priceMax].some((input) => {
-        if (!input.value) return false;
-        return Number(input.value) < 0 || Number(input.value) % 50 !== 0;
+      const wrong = [priceMin, priceMax].filter((input) => {
+        const bad = input.value !== '' && (Number(input.value) < 0 || Number(input.value) % 50 !== 0);
+        input.classList.toggle('is-invalid', bad);
+        input.setAttribute('aria-invalid', String(bad));
+        return bad;
       });
-      [priceMin, priceMax].forEach((input) => {
-        input.classList.toggle('is-invalid', invalid);
-        input.setAttribute('aria-invalid', String(invalid));
-      });
-      priceError?.classList.toggle('is-visible', invalid);
-      return !invalid;
+      priceError?.classList.toggle('is-visible', wrong.length > 0);
+      return wrong.length === 0;
     };
 
     const applyFilters = ({ updateUrl = true } = {}) => {
